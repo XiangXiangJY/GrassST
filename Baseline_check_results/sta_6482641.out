@@ -1,0 +1,65 @@
+Python path:
+/mnt/home/wangx306/conda3/envs/stagate2_env/bin/python
+2.8.0+cu128
+Check louvain + leiden:
+louvain OK
+leiden OK
+
+==================== STAGATE pyG Tutorial 7 ====================
+input_dir: /mnt/gs21/scratch/wangx306/STGrass/Data/Slide-seqV2_MoB
+counts_file: /mnt/gs21/scratch/wangx306/STGrass/Data/Slide-seqV2_MoB/Puck_200127_15.digital_expression.txt
+coor_file: /mnt/gs21/scratch/wangx306/STGrass/Data/Slide-seqV2_MoB/Puck_200127_15_bead_locations.csv
+used_file: /mnt/gs21/scratch/wangx306/STGrass/Data/Slide-seqV2_MoB/used_barcodes.txt
+device: cpu
+================================================================
+
+counts shape: (21220, 21724)
+counts index example: ['0610005C13Rik', '0610007P14Rik', '0610009B22Rik', '0610009E02Rik', '0610009L18Rik']
+counts columns example: ['TTTTTTTTTTTTTT', 'GCTAGGATTGTAAA', 'CACAACAACGTTGG', 'AATGACGGCAATGC', 'TATTTTAGATCTCA']
+coordinate columns: ['Unnamed: 0', 'xcoord', 'ycoord', 'barcode']
+coordinate head:
+   Unnamed: 0    xcoord  ycoord         barcode
+0           0    10.298  3031.2  TTTTTTTTTTTTTT
+1           1  3352.500  2498.0  GCTAGGATTGTAAA
+2           2  3687.400  4701.0  CACAACAACGTTGG
+3           3  2706.900  2504.5  AATGACGGCAATGC
+4           4  2786.800  3984.3  TATTTTAGATCTCA
+barcode candidate barcode, common spots: 21724
+n spots in counts: 21724
+n spots in coordinates: 21724
+n common spots: 21724
+coordinate columns used: xcoord ycoord
+adata before used barcode filtering: (21724, 21220)
+used barcode count: 20139
+used barcode common count: 20139
+adata after used barcode filtering: (20139, 21220)
+adata after gene filtering: (20139, 11750)
+adata after normalization: (20139, 11750)
+------Calculating spatial graph...
+The graph contains 228300 edges, 20139 cells.
+11.3362 neighbors per cell on average.
+Size of Input:  (20139, 3000)
+STAGATE embedding shape: (20139, 30)
+number of louvain clusters: 12
+louvain cluster counts:
+louvain
+0     4367
+1     3266
+2     2768
+3     2309
+4     2148
+5     1605
+6     1245
+7      771
+8      706
+9      330
+10     318
+11     306
+Name: count, dtype: int64
+
+==================== Done ====================
+Saved to: ./stagate_pyg_tutorial7_reproduce
+Spatial plot: ./stagate_pyg_tutorial7_reproduce/stagate_spatial_louvain.png
+UMAP plot: ./stagate_pyg_tutorial7_reproduce/stagate_umap_louvain.png
+================================================
+

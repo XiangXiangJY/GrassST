@@ -1,0 +1,37 @@
+> library(mclust)
+> 
+> 
+R_HOME: /mnt/ffs24/home/wangx306/conda3/envs/st-graph-parafac2-cpu/lib/R
+R_LIBS_USER: /mnt/ffs24/home/wangx306/conda3/envs/st-graph-parafac2-cpu/lib/R/library
+
+==================== GraphST Official Check ====================
+dataset: 151673
+adata_path: /mnt/gs21/scratch/wangx306/STGrass/Data/SpatialTranscriptomics/151673.h5ad
+device: cpu
+n_clusters: 7
+radius: 50
+epochs: 600
+===============================================================
+
+adata shape before filtering: (3639, 33538)
+label_key: layer
+obs columns: ['in_tissue', 'array_row', 'array_col', 'spot_name', 'layer']
+obsm keys before GraphST: ['spatial']
+adata shape after filtering NA labels: (3611, 33538)
+Begin to train ST data...
+Optimization finished for ST data!
+
+obsm keys after GraphST: ['spatial', 'distance_matrix', 'graph_neigh', 'adj', 'label_CSL', 'feat', 'feat_a', 'emb']
+GraphST embedding shape: (3611, 3000)
+fitting ...
+  |                                                                              |                                                                      |   0%  |                                                                              |===================================                                   |  50%  |                                                                              |======================================================================| 100%
+
+==================== Results ====================
+label_key: layer
+ARI: 0.6326790593733949
+NMI: 0.7379652428980865
+predicted clusters: 7
+=================================================
+
+Saved to: ./graphst_official_check_151673
+All done.

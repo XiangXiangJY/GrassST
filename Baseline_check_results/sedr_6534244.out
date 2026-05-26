@@ -1,0 +1,59 @@
+==================== CHECK PYTHON ====================
+/mnt/ffs24/home/wangx306/conda3/envs/sedr_env/bin/python
+==================== CHECK TORCH ====================
+2.8.0+cpu False
+==================== CHECK NUMPY SCANPY SKMISC ====================
+numpy: 1.26.4
+scanpy: 1.10.3
+skmisc OK
+==================== CHECK R ====================
+/mnt/ffs24/home/wangx306/conda3/envs/sedr_env/bin/R
+/mnt/ffs24/home/wangx306/conda3/envs/sedr_env/bin/Rscript
+/mnt/ffs24/home/wangx306/conda3/envs/sedr_env/lib/R 
+==================== CHECK MCLUST ====================
+mclust OK
+==================== CHECK RPY2 ====================
+R_HOME from python: /mnt/ffs24/home/wangx306/conda3/envs/sedr_env/lib/R
+rpy2 OK
+==================== CHECK SEDR ====================
+SEDR OK
+==================== RUN SEDR OFFICIAL CHECK ====================
+
+==================== SEDR official check ====================
+sample: 151673
+adata_path: /mnt/gs21/scratch/wangx306/STGrass/Data/SpatialTranscriptomics/151673.h5ad
+device: cpu
+random_seed: 2023
+n_clusters: 7
+=============================================================
+
+original shape: (3639, 33538)
+label key: layer
+obs columns: ['in_tissue', 'array_row', 'array_col', 'spot_name', 'layer']
+obsm keys: ['spatial']
+after preprocessing shape: (3639, 2000)
+PCA shape: (3639, 200)
+graph keys: dict_keys(['adj_norm', 'adj_label', 'norm_value'])
+adj_norm: tensor(indices=tensor([[   0,    0,    0,  ..., 3638, 3638, 3638],
+                       [   0,  397,  485,  ..., 3402, 3564, 3638]]),
+       values=tensor([0.0769, 0.0769, 0.0769,  ..., 0.0769, 0.0769, 0.0769]),
+       size=(3639, 3639), nnz=48471, layout=torch.sparse_coo)
+adj_label: tensor(indices=tensor([[   0,    0,    0,  ..., 3638, 3638, 3638],
+                       [   0,  397,  485,  ..., 3402, 3564, 3638]]),
+       values=tensor([1., 1., 1.,  ..., 1., 1., 1.]),
+       size=(3639, 3639), nnz=48471, dtype=torch.float64,
+       layout=torch.sparse_coo)
+norm_value: 0.501836878545686
+SEDR embedding shape: (3639, 32)
+fitting ...
+  |                                                                              |                                                                      |   0%  |                                                                              |===================================                                   |  50%  |                                                                              |======================================================================| 100%
+
+==================== Results ====================
+ARI: 0.6203398663488313
+NMI: 0.7290052695424976
+predicted clusters: 7
+=================================================
+
+Saved to: ./sedr_official_check_151673
+Figure: ./sedr_official_check_151673/sedr_151673_spatial.png
+All done.
