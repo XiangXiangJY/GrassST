@@ -14,11 +14,7 @@ Activate the environment:
 conda activate grassST_env
 ```
 
-To update an existing environment:
 
-```bash
-conda env update -f envs/environment_grassst.yml --prune
-```
 
 ## Test GrassST
 
