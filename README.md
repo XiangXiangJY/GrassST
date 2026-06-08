@@ -28,4 +28,4 @@ The script runs the GrassST framework using the dataset paths configured inside 
 
 ## Datasets
 
-The spatial transcriptomics datasets used in the numerical experiments are available from the Wei Lab Spatial Transcriptomics Data Library at \url{https://weilab.math.msu.edu/DataLibrary/SpatialTranscriptomics/}.
+The spatial transcriptomics datasets used in the numerical experiments are available from the Wei Lab Spatial Transcriptomics Data Library at https://weilab.math.msu.edu/DataLibrary/SpatialTranscriptomics/.
