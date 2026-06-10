@@ -443,6 +443,8 @@ dependencies:
   - zstandard=0.25.0
   - zstd=1.5.7
   - pip:
+      - --extra-index-url https://download.pytorch.org/whl/cpu
+      - --find-links https://data.pyg.org/whl/torch-2.5.1+cpu.html
       - anyio==4.12.1
       - biothings-client==0.4.1
       - graphst==1.1.1
@@ -454,9 +456,9 @@ dependencies:
       - mygene==3.2.2
       - paste-bio==1.4.0
       - pyg-lib==0.4.0+pt25cpu
-      - stagate-pyg==1.0.0
-      - torch==2.11.0+cpu
+      - torch==2.5.1+cpu
       - torch-geometric==2.7.0
       - torch-scatter==2.1.2+pt25cpu
       - torch-sparse==0.6.18+pt25cpu
       - xxhash==3.6.0
+
