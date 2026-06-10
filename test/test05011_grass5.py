@@ -36,14 +36,16 @@ from grass.evaluation_utils import (
 from grass.io_utils import save_metric_table
 
 
+DATA_ROOT = "/mnt/gs21/scratch/wangx306/STGrass"
+
 DATASET_CONFIGS = {
     "dlpfc": {
         "section_ids": ["151673", "151674", "151675", "151676"],
         "paths": [
-            "/mnt/gs21/scratch/wangx306/STGrass/Data/SpatialTranscriptomics/151673.h5ad",
-            "/mnt/gs21/scratch/wangx306/STGrass/Data/SpatialTranscriptomics/151674.h5ad",
-            "/mnt/gs21/scratch/wangx306/STGrass/Data/SpatialTranscriptomics/151675.h5ad",
-            "/mnt/gs21/scratch/wangx306/STGrass/Data/SpatialTranscriptomics/151676.h5ad",
+            f"{DATA_ROOT}/Data/SpatialTranscriptomics/151673.h5ad",
+            f"{DATA_ROOT}/Data/SpatialTranscriptomics/151674.h5ad",
+            f"{DATA_ROOT}/Data/SpatialTranscriptomics/151675.h5ad",
+            f"{DATA_ROOT}/Data/SpatialTranscriptomics/151676.h5ad",
         ],
         "domain_key": "layer",
         "coord_obsm_key": "spatial",
@@ -55,9 +57,9 @@ DATASET_CONFIGS = {
     "barista": {
         "section_ids": ["slice_1", "slice_2", "slice_3"],
         "paths": [
-            "/mnt/gs21/scratch/wangx306/STGrass/Data/Barista/slice_1.h5ad",
-            "/mnt/gs21/scratch/wangx306/STGrass/Data/Barista/slice_2.h5ad",
-            "/mnt/gs21/scratch/wangx306/STGrass/Data/Barista/slice_3.h5ad",
+            f"{DATA_ROOT}/Data/Barista/slice_1.h5ad",
+            f"{DATA_ROOT}/Data/Barista/slice_2.h5ad",
+            f"{DATA_ROOT}/Data/Barista/slice_3.h5ad",
         ],
         "domain_key": "layer",
         "coord_obsm_key": "spatial",
@@ -75,11 +77,11 @@ DATASET_CONFIGS = {
             "MERFISH_0.24",
         ],
         "paths": [
-            "/mnt/gs21/scratch/wangx306/STGrass/Data/Merfish/MERFISH_0.04.h5ad",
-            "/mnt/gs21/scratch/wangx306/STGrass/Data/Merfish/MERFISH_0.09.h5ad",
-            "/mnt/gs21/scratch/wangx306/STGrass/Data/Merfish/MERFISH_0.14.h5ad",
-            "/mnt/gs21/scratch/wangx306/STGrass/Data/Merfish/MERFISH_0.19.h5ad",
-            "/mnt/gs21/scratch/wangx306/STGrass/Data/Merfish/MERFISH_0.24.h5ad",
+            f"{DATA_ROOT}/Data/Merfish/MERFISH_0.04.h5ad",
+            f"{DATA_ROOT}/Data/Merfish/MERFISH_0.09.h5ad",
+            f"{DATA_ROOT}/Data/Merfish/MERFISH_0.14.h5ad",
+            f"{DATA_ROOT}/Data/Merfish/MERFISH_0.19.h5ad",
+            f"{DATA_ROOT}/Data/Merfish/MERFISH_0.24.h5ad",
         ],
         "domain_key": "ground_truth",
         "coord_obsm_key": "spatial",
@@ -91,13 +93,13 @@ DATASET_CONFIGS = {
     "her2": {
         "section_ids": ["A1", "B1", "C1", "D1", "E1", "F1", "H1"],
         "paths": [
-            "/mnt/gs21/scratch/wangx306/STGrass/Data/HER2/A1.h5ad",
-            "/mnt/gs21/scratch/wangx306/STGrass/Data/HER2/B1.h5ad",
-            "/mnt/gs21/scratch/wangx306/STGrass/Data/HER2/C1.h5ad",
-            "/mnt/gs21/scratch/wangx306/STGrass/Data/HER2/D1.h5ad",
-            "/mnt/gs21/scratch/wangx306/STGrass/Data/HER2/E1.h5ad",
-            "/mnt/gs21/scratch/wangx306/STGrass/Data/HER2/F1.h5ad",
-            "/mnt/gs21/scratch/wangx306/STGrass/Data/HER2/H1.h5ad",
+            f"{DATA_ROOT}/Data/HER2/A1.h5ad",
+            f"{DATA_ROOT}/Data/HER2/B1.h5ad",
+            f"{DATA_ROOT}/Data/HER2/C1.h5ad",
+            f"{DATA_ROOT}/Data/HER2/D1.h5ad",
+            f"{DATA_ROOT}/Data/HER2/E1.h5ad",
+            f"{DATA_ROOT}/Data/HER2/F1.h5ad",
+            f"{DATA_ROOT}/Data/HER2/H1.h5ad",
         ],
         "domain_key": "label",
         "coord_obsm_key": "spatial",
@@ -106,24 +108,7 @@ DATASET_CONFIGS = {
         "use_hvg": True,
         "n_top_genes": 7500,
     },
-    "stereoseq": {
-        "section_ids": [
-            "E9.5_E1S1",
-            "E9.5_E2S1",
-            "E9.5_E2S2",
-        ],
-        "paths": [
-            "/mnt/gs21/scratch/wangx306/STGrass/Data/StereoSeq/E9.5_E1S1.MOSTA_20240319045807.h5ad",
-            "/mnt/gs21/scratch/wangx306/STGrass/Data/StereoSeq/E9.5_E2S1.MOSTA_20240319045818.h5ad",
-            "/mnt/gs21/scratch/wangx306/STGrass/Data/StereoSeq/E9.5_E2S2.MOSTA_20240319045821.h5ad",
-        ],
-        "domain_key": "ground_truth",
-        "coord_obsm_key": "spatial",
-        "coord_keys": None,
-        "flavor": "cell_ranger",
-        "use_hvg": True,
-        "n_top_genes": 7500,
-    },
+    
 }
 
 
@@ -714,46 +699,6 @@ def save_plot_ready_outputs(
     return adata_all_path
 
 
-def run_flat_projector_leiden(
-    adatas,
-    rep_key,
-    section_ids,
-    domain_key,
-    n_neighbors=20,
-    resolution=1.0,
-    cluster_key_prefix="joint_local_grassmann_flat",
-):
-    results = []
-
-    for adata_i, sid in zip(adatas, section_ids):
-        cluster_key = f"{cluster_key_prefix}_leiden_{sid}"
-
-        sc.pp.neighbors(
-            adata_i,
-            use_rep=rep_key,
-            n_neighbors=n_neighbors,
-        )
-        sc.tl.leiden(
-            adata_i,
-            resolution=resolution,
-            key_added=cluster_key,
-        )
-
-        ari = clustering_ari(adata_i, domain_key=domain_key, pred_key=cluster_key)
-        nmi = clustering_nmi(adata_i, domain_key=domain_key, pred_key=cluster_key)
-
-        results.append(
-            {
-                "section_id": sid,
-                "ari": float(ari),
-                "nmi": float(nmi),
-                "cluster_key": cluster_key,
-            }
-        )
-
-    return results
-
-
 def run_chordal_spectral(
     adatas,
     subspace_list,
@@ -847,7 +792,7 @@ def plot_umap_from_rep(
 
 
 def main():
-    dataset_name = "dlpfc"
+    dataset_name = "barista"
     cfg = DATASET_CONFIGS[dataset_name]
 
     params = {
@@ -885,7 +830,6 @@ def main():
     }
 
     methods_to_run = [
-        "joint_local_grassmann_flat_leiden",
         "joint_local_grassmann_chordal_leiden",
         "joint_local_grassmann_chordal_spectral",
     ]
@@ -1115,18 +1059,7 @@ def main():
 
         print(f"\n==================== RUN {method_name.upper()} ====================")
 
-        if method_name == "joint_local_grassmann_flat_leiden":
-            slice_results = run_flat_projector_leiden(
-                adatas=adatas_run,
-                rep_key=rep_key,
-                section_ids=loaded_section_ids,
-                domain_key=params["domain_key"],
-                n_neighbors=params["n_neighbors"],
-                resolution=params["resolution"],
-                cluster_key_prefix=method_name,
-            )
-
-        elif method_name == "joint_local_grassmann_chordal_leiden":
+        if method_name == "joint_local_grassmann_chordal_leiden":
             slice_results = []
 
             for adata_i, subs, sid in zip(
